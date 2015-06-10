@@ -33,7 +33,12 @@ test("doesn't modify passed in properties hash", function() {
 test("allow passing relationships as well as attributes", function() {
   var records, storage;
   run(function() {
-    records = store.pushMany('record', [{ id: 1, title: "it's a beautiful day" }, { id: 2, title: "it's a beautiful day" }]);
+    records = store.push({
+      data: [
+        { type: 'record', id: 1, attributes: { title: "it's a beautiful day" } },
+        { type: 'record', id: 2, attributes: { title: "it's a beautiful day" } }
+      ]
+    });
     storage = store.createRecord('storage', { name: 'Great store', records: records });
   });
 
